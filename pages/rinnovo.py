@@ -326,5 +326,6 @@ with col3:
     tempo = st.number_input("Tempo",min_value = 0)
 
 intcomp = cap * (1+(intere/100))** tempo 
-st.metric("Interesse composto", f"{intcomp}")
+intcomp = int(intcomp)
+st.metric("Interesse composto", f"{intcomp} €")
 
