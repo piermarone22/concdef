@@ -272,7 +272,7 @@ with col2:
     st.header(f"{totals} €")
 
 with col3:
-    st.header("Pagamento classico anni Evergreen")
+    st.header("Confronto")
     st.header(f"{totals /anni_ass / 12 * mensili} €")
 
 # Parametri principali
