@@ -268,7 +268,7 @@ with col1:
     st.header(f"{tot_op} €")
 
 with col2:
-    st.header("Pagamento classico")
+    st.header("Classico")
     st.header(f"{totals} €")
 
 with col3:
