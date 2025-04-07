@@ -273,7 +273,7 @@ with col2:
 
 with col3:
     st.header("Confronto")
-    st.header(f"{int((totals /anni_ass / 12 * mensili) - tot_op)} €")
+    st.header(f"{int(((totals /anni_ass / 12) * mesi_ever) - tot_op)} €")
 
 # Parametri principali
 anni_ass = int(anni_ass)  # Numero di anni
