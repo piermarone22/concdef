@@ -275,6 +275,12 @@ with col3:
     st.header("Confronto")
     st.header(f"{int(((totals /anni_ass / 12) * mesi_ever) - tot_op)} €")
 
+riga1 = "La voce “Confronto” è la differenza in spesa che si avrebbe scegliendo il pagamento classico rispetto all’Evergreen."
+riga2 = "(pagamento classico / totale anni / 12 x mesi evergreen) - costo operazione evergreen"
+
+st.text(f"{riga1}\n{riga2}")
+
+
 # Parametri principali
 anni_ass = int(anni_ass)  # Numero di anni
 mesii = anni_ass * 12  # Numero totale di mesi
