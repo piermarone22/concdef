@@ -314,3 +314,17 @@ fig = px.line(df_finale, x="Mese", y="Costo (€)", color="Tipo", markers=True, 
 
 # ✅ Mostrare in Streamlit
 st.plotly_chart(fig)
+
+
+st.header("Interesse composto")
+col1, col2, col3 = st.columns(3)
+with col1:
+    cap = st.number_input("Capitale", step = 100)
+with col2:
+    intere = st.number_input("Interesse", min_value=0, max_value=100)
+with col3:
+    tempo = st.number_input("Tempo",min_value = 0)
+
+intcomp = cap * (1+(intere/100))** tempo 
+st.metric("Interesse composto", f"{intcomp}")
+
