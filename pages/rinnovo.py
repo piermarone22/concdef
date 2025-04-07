@@ -271,6 +271,10 @@ with col2:
     st.header("Pagamento classico")
     st.header(f"{totals} €")
 
+with col3:
+    st.header("Pagamento classico anni Evergreen")
+    st.header(f"{totals /anni_ass / 12 * mensili} €")
+
 # Parametri principali
 anni_ass = int(anni_ass)  # Numero di anni
 mesii = anni_ass * 12  # Numero totale di mesi
