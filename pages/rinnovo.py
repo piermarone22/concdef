@@ -333,6 +333,6 @@ with col1:
     st.metric("Capitale + Interesse", f"{intcomp} €")
 
 with col2:
-    st.metric("Interesse",f"{intcomp - cap} €")
+    st.metric("Interesse",f"{int(intcomp - cap)} €")
 
 
