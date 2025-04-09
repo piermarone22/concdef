@@ -287,9 +287,22 @@ mesii = anni_ass * 12  # Numero totale di mesi
 totale_tot = tot_mese + cifra_mese  # Costo totale mensile incluso la cifra da risparmiare
 
 # ✅ Creazione del vettore per il pagamento classico
-mesi_classici = np.arange(1, mesii + 1, 1)  # Crea una lista dei mesi da 1 a mesii
-vettore_classico = np.array([totale_tot * i for i in mesi_classici])  # Moltiplica totale_tot per il numero del mese
+mesii = anni_ass * 12
 
+# calcolo rata mensile classica
+mensile_classico = (totale / anni_ass / 12) + (cifra / anni_ass / 12)
+
+# cumsum per costruire il vettore mese per mese
+vettore_classico = np.cumsum([mensile_classico] * mesii)
+
+# inserisco il prezzo iniziale come primo elemento
+vettore_classico = np.insert(vettore_classico, 0, prezzo)
+
+# sommo il prezzo all'accumulo successivo (solo agli altri)
+vettore_classico[1:] = vettore_classico[1:] + prezzo
+
+# creo i mesi corrispondenti (da 0 a mesii)
+mesi_classici = np.arange(0, mesii + 1, 1)
 df_classico = pd.DataFrame({
     "Mese": mesi_classici,
     "Costo (€)": vettore_classico,
@@ -297,9 +310,10 @@ df_classico = pd.DataFrame({
 })
 
 # ✅ Creazione del vettore per il modello Evergreen
-mesi_evergreen = np.arange(1, mesi_ever + 1, 1)  # Ora ha una progressione reale
-vettore_evergreen = np.cumsum([tot_op / mesi_ever] * mesi_ever)  # Anche questo cresce nel tempo
-
+mesi_evergreen = np.arange(0, mesi_ever + 1, 1)  # Ora ha una progressione reale
+vettore_evergreen = np.cumsum([(tot_op - anticipo) / mesi_ever] * mesi_ever)  # Anche questo cresce nel tempo
+vettore_evergreen = np.insert(vettore_evergreen, 0, anticipo)
+vettore_evergreen[1:] = vettore_evergreen[1:] + anticipo
 df_evergreen = pd.DataFrame({
     "Mese": mesi_evergreen,
     "Costo (€)": vettore_evergreen,
@@ -326,13 +340,5 @@ with col3:
     tempo = st.number_input("Tempo",min_value = 0)
 
 intcomp = cap * (1+(intere/100))** tempo 
-intcomp = int(intcomp)
-
-col1, col2 = st.columns(2)
-with col1:
-    st.metric("Capitale + Interesse", f"{intcomp} €")
-
-with col2:
-    st.metric("Interesse",f"{int(intcomp - cap)} €")
-
+st.metric("Interesse composto", f"{intcomp}")
 
